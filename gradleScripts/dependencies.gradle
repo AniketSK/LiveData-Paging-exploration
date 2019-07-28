@@ -1,11 +1,12 @@
 ext {
+
     versions = [
             kotlin           : "1.3.41",
             supportLibrary   : "28.0.0",
             androidx         : "1.0.2",
             androidxDesign   : "1.0.0",
             rxjava           : "2.2.10",
-            leakcanary      : "1.6.3",
+            leakcanary       : "1.6.3",
             rxandroid        : "2.1.1",
             rxbindings       : "3.0.0-alpha2",
             rxkotlin         : "2.3.0",
@@ -36,7 +37,8 @@ ext {
             detekt           : "1.0.0-RC15",
             realm            : "5.1.0",
             realmGradlePlugin: "5.13.0",
-            ktx              : "1.0.2"
+            ktx              : "1.0.2",
+            autodispose      : "1.3.0"
     ]
 
     ktxdep = [
@@ -52,7 +54,8 @@ ext {
             apply       : "io.gitlab.arturbosch.detekt"
     ]
     kotlinstd = [
-            lib: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+            lib         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+            gradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     ]
 
     constraintlayout = [
@@ -155,6 +158,7 @@ ext {
     lifecycle = [
             extensions     : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
             viewmodel      : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
+            kotlinCompiler : "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}",
             livedata       : "androidx.lifecycle:lifecycle-livedata:${versions.lifecycle}",
             runtime        : "androidx.lifecycle:lifecycle-runtime:${versions.lifecycle}",
             java8compiler  : "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}",
@@ -189,5 +193,10 @@ ext {
             libdebug  : "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}",
             librelease: "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakcanary}"
     ]
+
+    autodispose = [
+            lib: "com.uber.autodispose:autodispose:${versions.autodispose}",
+    ]
 }
+
 

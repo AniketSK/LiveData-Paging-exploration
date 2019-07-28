@@ -64,4 +64,10 @@ dependencies {
     implementation okhttp.lib
     implementation okhttp.interceptor
 
+    implementation lifecycle.extensions
+    kapt lifecycle.kotlinCompiler
+    implementation lifecycle.reactivestreams
+    testImplementation lifecycle.testhelper
+
+    implementation autodispose.lib
 }
