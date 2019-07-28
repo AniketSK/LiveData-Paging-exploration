@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -52,21 +51,35 @@ dependencies {
     kapt jetifier.core
     annotationProcessor jetifier.core
 
+    // Network
     implementation retrofit.lib
     implementation retrofit.adapters
     implementation retrofit.gsonconverter
     implementation gson.lib
+    implementation okhttp.lib
+    implementation okhttp.interceptor
 
-    implementation realmdep.lib
+    // Databases
+//    implementation realmdep.lib // Realm
+    // Room
+    implementation room.lib
+    kapt room.compiler
+    implementation room.extensions
+    implementation room.rxjava
+    testImplementation room.test
+
+    // Paging
+    implementation paging.lib
+    implementation paging.rxjava
+    testImplementation paging.testing
 
     implementation mockito.lib
     implementation mockito.android
     implementation hamcrest.lib
 
     implementation timber.lib
-    implementation okhttp.lib
-    implementation okhttp.interceptor
 
+    // Lifecycle/Architecture
     implementation lifecycle.extensions
     kapt lifecycle.kotlinCompiler
     implementation lifecycle.reactivestreams
