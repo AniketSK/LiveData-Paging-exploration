@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'realm-android'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 28
@@ -24,11 +26,42 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation androidxDependencies.appCompat
+    implementation ktxdep.lib
+    implementation adxconstraintlayout.lib
+    testImplementation testlib.junit
+    androidTestImplementation adxTestLib.runner
+    androidTestImplementation adxTestLib.espresso
+
+    implementation rxjava.lib
+    implementation rxjava.android
+    implementation rxjava.bindings
+    implementation rxjava.bindingRecyclerview
+
+
+    implementation dagger.lib
+    kapt dagger.compiler
+    implementation dagger.android
+    implementation dagger.support
+    kapt dagger.androidAnnotationProcessor
+    // Required to keep dagger 2.19 from being replaced by 2.16 and broken by jetifier.
+    kapt jetifier.core
+    annotationProcessor jetifier.core
+
+    implementation retrofit.lib
+    implementation retrofit.adapters
+    implementation retrofit.gsonconverter
+    implementation gson.lib
+
+    implementation realmdep.lib
+
+    implementation mockito.lib
+    implementation mockito.android
+    implementation hamcrest.lib
+
+    implementation timber.lib
+    implementation okhttp.lib
+    implementation okhttp.interceptor
+
 }
