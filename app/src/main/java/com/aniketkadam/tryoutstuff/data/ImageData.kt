@@ -1,4 +1,4 @@
-package com.aniketkadam.tryoutstuff
+package com.aniketkadam.tryoutstuff.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
