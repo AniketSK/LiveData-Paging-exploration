@@ -11,6 +11,7 @@ android {
         applicationId "com.aniketkadam.tryoutstuff"
         minSdkVersion 15
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -90,4 +91,6 @@ dependencies {
     testImplementation lifecycle.testhelper
 
     implementation autodispose.lib
+
+    implementation multidex.lib
 }
