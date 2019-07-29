@@ -12,6 +12,9 @@ interface ImageDataDao {
     @Insert
     fun insert(imageData: ImageData): Completable
 
+    @Insert
+    fun insert(imageDataList: List<ImageData>): Completable
+
     @Query("SELECT * FROM imagedata")
     fun getAllImageData(): LiveData<List<ImageData>>
 

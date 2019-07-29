@@ -45,4 +45,13 @@ class ImageDataDaoTest {
         assertEquals(result?.get(0), sampleData)
 
     }
+
+    @Test
+    fun writeImageListandRead() {
+        val sampleData: List<ImageData> = (1..10).map { ImageData(it.toString(), "Hello ${it}", "imagedb.com") }
+        imageDataDao.insert(sampleData).blockingGet()
+
+        val result: List<ImageData>? = LiveDataTestUtil.getValue(imageDataDao.getAllImageData())
+        assertEquals(result?.size, sampleData.size)
+    }
 }
