@@ -1,7 +1,8 @@
 package com.aniketkadam.tryoutstuff
 
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class MainVM(val respository: Repository) : ViewModel() {
+class MainVM @Inject constructor(val respository: Repository) : ViewModel() {
 
 }
