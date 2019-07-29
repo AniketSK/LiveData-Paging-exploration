@@ -1,6 +1,8 @@
 package com.aniketkadam.tryoutstuff.di
 
-import com.aniketkadam.tryoutstuff.Repository
+import com.aniketkadam.tryoutstuff.data.ImageDataDao
+import com.aniketkadam.tryoutstuff.data.ImageDatabase
+import com.aniketkadam.tryoutstuff.data.Repository
 import dagger.Module
 import dagger.Provides
 
@@ -8,5 +10,8 @@ import dagger.Provides
 class MainActivityModule {
 
     @Provides
-    fun provideRepository() = Repository()
+    fun provideRepository(imageDataDao: ImageDataDao) = Repository(imageDataDao)
+
+    @Provides
+    fun getImageDao(db: ImageDatabase) = db.imageDataDao()
 }
