@@ -35,7 +35,11 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
     }
-
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -44,9 +48,24 @@ dependencies {
     implementation androidxDependencies.appCompat
     implementation ktxdep.lib
     implementation adxconstraintlayout.lib
+
+    // Testing
     testImplementation testlib.junit
+    androidTestImplementation testlib.junit
+
     androidTestImplementation adxTestLib.runner
+    androidTestImplementation adxTestLib.rules
+    androidTestImplementation adxTestLib.testext
     androidTestImplementation adxTestLib.espresso
+    androidTestImplementation lifecycle.testhelper
+    androidTestImplementation room.test
+
+    // Robolectric and everything it needs for its hybrid unit+instrumentation tests
+    testImplementation robolectric.lib
+    testImplementation adxTestLib.runner
+    testImplementation adxTestLib.core
+    testImplementation lifecycle.testhelper
+    testImplementation room.test
 
     implementation rxjava.lib
     implementation rxjava.android
@@ -78,7 +97,6 @@ dependencies {
     kapt room.compiler
     implementation room.extensions
     implementation room.rxjava
-    testImplementation room.test
 
     // Paging
     implementation paging.lib
@@ -95,9 +113,10 @@ dependencies {
     implementation lifecycle.extensions
     kapt lifecycle.kotlinCompiler
     implementation lifecycle.reactivestreams
-    testImplementation lifecycle.testhelper
 
     implementation autodispose.lib
 
     implementation multidex.lib
+
+
 }
