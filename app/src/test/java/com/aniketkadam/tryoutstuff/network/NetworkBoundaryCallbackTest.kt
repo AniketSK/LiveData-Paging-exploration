@@ -5,6 +5,7 @@ import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.data.ImageDataDao
 import com.aniketkadam.tryoutstuff.data.LiveDataTestUtil
 import io.reactivex.Single
+import io.reactivex.schedulers.TestScheduler
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.Before
@@ -15,9 +16,9 @@ import org.mockito.Mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
+import java.lang.Thread.sleep
 import java.util.concurrent.TimeUnit
 import org.mockito.Mockito.`when` as When
-
 
 class NetworkBoundaryCallbackTest {
 
@@ -62,8 +63,11 @@ class NetworkBoundaryCallbackTest {
         verify(db, times(1)).insert(ArgumentMatchers.anyList())
     }
 
+
     @Test
-    fun `onItemAtEndLoaded only loads data once for multiple invocations`() {
+    fun `onItemAtEndLoaded only loads data once for multiple invocations and completes the initial request`() {
+
+        val scheduler = TestScheduler() // Prevent time from advancing with a test scheduler
         // Delay the response enough that the call wouldn't have finished.
         When(service.findImages(ArgumentMatchers.anyString())).thenReturn(
             Single.just(
@@ -74,9 +78,8 @@ class NetworkBoundaryCallbackTest {
                         "www.google.com"
                     )
                 )
-            ).delay(5, TimeUnit.SECONDS)
+            ).delay(1, TimeUnit.SECONDS, scheduler)
         )
-
 
         networkBoundaryCallback.onItemAtEndLoaded(ImageData("someId", "what", "compassionatecoding.com"))
 
@@ -94,6 +97,16 @@ class NetworkBoundaryCallbackTest {
         ) // Since it's already loading this should do nothing
 
         verify(service, times(1)).findImages(ArgumentMatchers.anyString())
+
+        // Let time pass and see if it completes after
+        scheduler.advanceTimeBy(10, TimeUnit.SECONDS)
+        sleep(50) // Fails without a bit of sleep
+
+        assertThat(
+            LiveDataTestUtil.getValue(networkBoundaryCallback.networkState),
+            equalTo<NetworkState>(NetworkState.Complete)
+        )
+
     }
 
     private fun initializeService() {
