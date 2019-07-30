@@ -5,16 +5,15 @@ import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import io.reactivex.Completable
 
 @Dao
 interface ImageDataDao {
 
     @Insert
-    fun insert(imageData: ImageData): Completable
+    fun insert(imageData: ImageData)
 
     @Insert
-    fun insert(imageDataList: List<ImageData>): Completable
+    fun insert(imageDataList: List<ImageData>)
 
     @Query("SELECT * FROM imagedata")
     fun getAllImageData(): DataSource.Factory<Int, ImageData>
