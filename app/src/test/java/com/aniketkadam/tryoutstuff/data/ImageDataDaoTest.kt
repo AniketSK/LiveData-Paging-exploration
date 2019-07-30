@@ -41,7 +41,7 @@ class ImageDataDaoTest {
 
         imageDataDao.insert(sampleData).blockingGet()
 
-        val result: List<ImageData>? = LiveDataTestUtil.getValue(imageDataDao.getAllImageData())
+        val result: List<ImageData>? = LiveDataTestUtil.getValue(imageDataDao.getImageDataForTest())
         assertEquals(result?.get(0), sampleData)
 
     }
@@ -51,7 +51,7 @@ class ImageDataDaoTest {
         val sampleData: List<ImageData> = (1..10).map { ImageData(it.toString(), "Hello ${it}", "imagedb.com") }
         imageDataDao.insert(sampleData).blockingGet()
 
-        val result: List<ImageData>? = LiveDataTestUtil.getValue(imageDataDao.getAllImageData())
+        val result: List<ImageData>? = LiveDataTestUtil.getValue(imageDataDao.getImageDataForTest())
         assertEquals(result?.size, sampleData.size)
     }
 }
