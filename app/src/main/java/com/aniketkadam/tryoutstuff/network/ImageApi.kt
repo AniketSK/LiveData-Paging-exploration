@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface ImageApi {
 
     @GET("someUrl")
-    fun findImages(@Query("id") id: String): Single<ImageData>
+    fun findImages(@Query("id") id: String): Single<List<ImageData>>
 }
