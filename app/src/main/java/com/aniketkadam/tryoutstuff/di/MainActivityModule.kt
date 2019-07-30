@@ -4,6 +4,7 @@ import com.aniketkadam.tryoutstuff.data.ImageDataDao
 import com.aniketkadam.tryoutstuff.data.ImageDatabase
 import com.aniketkadam.tryoutstuff.data.Repository
 import com.aniketkadam.tryoutstuff.network.ImageApi
+import com.aniketkadam.tryoutstuff.network.NetworkBoundaryCallback
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -12,7 +13,10 @@ import retrofit2.Retrofit
 class MainActivityModule {
 
     @Provides
-    fun provideRepository(imageDataDao: ImageDataDao, imageApi: ImageApi) = Repository(imageDataDao, imageApi)
+    fun provideRepository(
+        imageDataDao: ImageDataDao,
+        boundaryCallback: NetworkBoundaryCallback
+    ) = Repository(imageDataDao, boundaryCallback)
 
     @Provides
     fun getImageDao(db: ImageDatabase) = db.imageDataDao()
