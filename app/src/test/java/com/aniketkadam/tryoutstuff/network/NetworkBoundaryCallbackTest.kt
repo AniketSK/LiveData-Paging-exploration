@@ -67,34 +67,22 @@ class NetworkBoundaryCallbackTest {
     @Test
     fun `onItemAtEndLoaded only loads data once for multiple invocations and completes the initial request`() {
 
+        val imageData = ImageData("someId", "what", "compassionatecoding.com")
         val scheduler = TestScheduler() // Prevent time from advancing with a test scheduler
         // Delay the response enough that the call wouldn't have finished.
         When(service.findImages(ArgumentMatchers.anyString())).thenReturn(
-            Single.just(
-                listOf(
-                    ImageData(
-                        "hi",
-                        "first",
-                        "www.google.com"
-                    )
-                )
-            ).delay(1, TimeUnit.SECONDS, scheduler)
+            Single.just(listOf(imageData))
+                .delay(1, TimeUnit.SECONDS, scheduler)
         )
 
-        networkBoundaryCallback.onItemAtEndLoaded(ImageData("someId", "what", "compassionatecoding.com"))
+        networkBoundaryCallback.onItemAtEndLoaded(imageData)
 
         assertThat(
             LiveDataTestUtil.getValue(networkBoundaryCallback.networkState),
             equalTo<NetworkState>(NetworkState.Loading)
         ) // Since the delay was called earlier, this should still be loading
 
-        networkBoundaryCallback.onItemAtEndLoaded(
-            ImageData(
-                "someId",
-                "what",
-                "compassionatecoding.com"
-            )
-        ) // Since it's already loading this should do nothing
+        networkBoundaryCallback.onItemAtEndLoaded(imageData) // Since it's already loading this should do nothing
 
         verify(service, times(1)).findImages(ArgumentMatchers.anyString())
 
