@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.data.ImageDataDao
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -49,8 +50,9 @@ class NetworkBoundaryCallback @Inject constructor(
         }
 
         return service.findImages(id)
+            .subscribeOn(Schedulers.io())
             .doOnEvent { data, _ -> db.insert(data) }
-            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = { _networkState.value = NetworkState.Complete },
                 onError = { _networkState.value = NetworkState.Error(it) }
