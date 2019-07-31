@@ -44,6 +44,10 @@ ext {
             robolectric      : "4.0.2",
             restMockServer   : "0.4.0",
     ]
+
+    kotlinAllOpen = [
+            lib:"org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
+    ]
     restMockServer = [
             lib: "com.github.andrzejchm.RESTMock:android:${versions.restMockServer}"
     ]
