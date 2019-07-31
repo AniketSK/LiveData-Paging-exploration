@@ -3,6 +3,7 @@ package com.aniketkadam.tryoutstuff.di
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,5 +21,6 @@ class NetworkingModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient() = OkHttpClient()
+    fun providesOkHttpClient() = OkHttpClient.Builder().addNetworkInterceptor((HttpLoggingInterceptor())
+        .apply { level = HttpLoggingInterceptor.Level.BODY }).build()
 }
