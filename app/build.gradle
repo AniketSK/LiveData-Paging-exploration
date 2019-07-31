@@ -107,9 +107,13 @@ dependencies {
     implementation paging.rxjava
     testImplementation paging.testing
 
-    implementation mockito.lib
-    implementation mockito.android
-    implementation hamcrest.lib
+    testImplementation mockito.lib
+    androidTestImplementation mockito.lib
+    testImplementation mockito.android
+    androidTestImplementation mockito.android
+
+    testImplementation hamcrest.lib
+    androidTestImplementation hamcrest.lib
 
     implementation timber.lib
 
