@@ -1,14 +1,13 @@
 package com.aniketkadam.tryoutstuff
 
 import androidx.lifecycle.ViewModel
-import com.aniketkadam.tryoutstuff.data.ImageListResult
 import com.aniketkadam.tryoutstuff.data.Repository
 import javax.inject.Inject
 
-class MainVM @Inject constructor(val respository: Repository) : ViewModel() {
+class MainVM @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    private val _imageListResult: ImageListResult by lazy {
-        respository.getPagedImageResult()
+    private val _imageListResult by lazy {
+        repository.getPagedImageResult()
     }
 
     val imageList = _imageListResult.imageData
