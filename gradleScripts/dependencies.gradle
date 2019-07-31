@@ -42,6 +42,10 @@ ext {
             paging           : "2.1.0",
             multidex         : "2.0.1",
             robolectric      : "4.0.2",
+            restMockServer   : "0.4.0",
+    ]
+    restMockServer = [
+            lib: "com.github.andrzejchm.RESTMock:android:${versions.restMockServer}"
     ]
 
     robolectric = [

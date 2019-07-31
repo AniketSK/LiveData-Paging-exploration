@@ -59,6 +59,7 @@ dependencies {
     androidTestImplementation adxTestLib.espresso
     androidTestImplementation lifecycle.testhelper
     androidTestImplementation room.test
+    androidTestImplementation restMockServer.lib
 
     // Robolectric and everything it needs for its hybrid unit+instrumentation tests
     testImplementation robolectric.lib
