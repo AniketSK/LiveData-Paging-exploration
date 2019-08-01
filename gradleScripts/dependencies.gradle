@@ -56,7 +56,7 @@ ext {
     ]
 
     kotlinAllOpen = [
-            lib:"org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
+            lib: "org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
     ]
     restMockServer = [
             lib: "com.github.andrzejchm.RESTMock:android:${versions.restMockServer}"
