@@ -44,7 +44,7 @@ class MainActivityModuleForTest {
     }
 }
 
-private inline fun <reified T : Any> Context.readAssetsFile(fileName: String): List<ImageData> =
+private inline fun <reified T : Any> Context.readAssetsFile(fileName: String): T =
     assets.open(fileName).bufferedReader().use { it.readText() }.let {
         Gson().fromJson(it, object : TypeToken<T>() {}.type)
     }
