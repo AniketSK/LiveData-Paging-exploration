@@ -37,7 +37,7 @@ class NetworkBoundaryCallback @Inject constructor(
 
     override fun onItemAtEndLoaded(itemAtEnd: ImageData) {
         super.onItemAtEndLoaded(itemAtEnd)
-        loadDataIfNotLoading(itemAtEnd.id)?.let {
+        loadDataIfNotLoading("${itemAtEnd.id.toInt() + 1}")?.let {
             loadMoreItemsAtEnd = it
         } // Unless a reference is held, it could be GC'd. Subsequent calls shouldn't null it out
     }
