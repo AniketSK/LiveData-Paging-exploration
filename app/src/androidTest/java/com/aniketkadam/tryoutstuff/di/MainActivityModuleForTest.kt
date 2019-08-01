@@ -31,7 +31,7 @@ class MainActivityModuleForTest {
         val api = mock(ImageApi::class.java)
 
         val data: List<ImageData> =
-            InstrumentationRegistry.getInstrumentation().context.readAssetsFile<List<ImageData>>("mocks/imagedata.json")
+            InstrumentationRegistry.getInstrumentation().context.readAssetsFile("mocks/imagedata.json")
 
 
         `when`(api.findImages(ArgumentMatchers.anyString())).thenAnswer {
