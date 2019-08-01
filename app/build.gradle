@@ -125,7 +125,9 @@ dependencies {
 
     implementation multidex.lib
 
-    androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock:0.8.5'
-
-    androidTestImplementation "com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.5"
+    // Daggermock when used with androidTest, requires the dexOpener to make the classes mockable.
+    // mock-maker-inline only works for test, not androidTest. So dexopener and it's instrumentation runner
+    // is really required.
+    androidTestImplementation daggerMock.lib
+    androidTestImplementation daggerMock.kotlin
 }

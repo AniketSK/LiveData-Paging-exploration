@@ -43,6 +43,13 @@ ext {
             multidex         : "2.0.1",
             robolectric      : "4.0.2",
             restMockServer   : "0.4.0",
+            daggerMock       : "0.8.5",
+    ]
+
+    daggerMock = [
+            lib:"com.github.fabioCollini.daggermock:daggermock:${versions.daggerMock}",
+            kotlin: "com.github.fabioCollini.daggermock:daggermock-kotlin:${versions.daggerMock}"
+    ]
     ]
 
     kotlinAllOpen = [
