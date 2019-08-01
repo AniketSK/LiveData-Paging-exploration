@@ -5,7 +5,7 @@ import androidx.paging.PagedList
 import com.aniketkadam.tryoutstuff.network.NetworkBoundaryCallback
 import javax.inject.Inject
 
-
+const val REPOSITORY_PREFETCH_DISTANCE = 30
 class Repository @Inject constructor(
     private val imageDataDao: ImageDataDao,
     private val boundaryCallback: NetworkBoundaryCallback
@@ -16,7 +16,7 @@ class Repository @Inject constructor(
         val networkErrors = boundaryCallback.networkState
 
         val config = PagedList.Config.Builder().setPageSize(20)
-            .setPrefetchDistance(30)
+            .setPrefetchDistance(REPOSITORY_PREFETCH_DISTANCE)
             .setInitialLoadSizeHint(30)
             .setMaxSize(100)
             .build()

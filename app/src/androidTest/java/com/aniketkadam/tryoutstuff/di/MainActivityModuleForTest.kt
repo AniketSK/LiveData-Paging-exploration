@@ -1,16 +1,18 @@
 package com.aniketkadam.tryoutstuff.di
 
-import com.aniketkadam.tryoutstuff.data.ImageData
-import com.aniketkadam.tryoutstuff.data.ImageDataDao
-import com.aniketkadam.tryoutstuff.data.ImageDatabase
-import com.aniketkadam.tryoutstuff.data.Repository
+import android.content.res.AssetManager
+import androidx.test.platform.app.InstrumentationRegistry
+import com.aniketkadam.tryoutstuff.data.*
 import com.aniketkadam.tryoutstuff.network.ImageApi
 import com.aniketkadam.tryoutstuff.network.NetworkBoundaryCallback
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Single
 import org.mockito.ArgumentMatchers
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 
 @Module
 class MainActivityModuleForTest {
@@ -27,22 +29,21 @@ class MainActivityModuleForTest {
     @Provides
     fun getImageApi(): ImageApi {
         val api = mock(ImageApi::class.java)
-        `when`(api.findImages(ArgumentMatchers.anyString())).thenReturn(
+
+        val data: List<ImageData> =
+            InstrumentationRegistry.getInstrumentation().context.assets.readAssetsFile("mocks/imagedata.json").let {
+                Gson().fromJson(it, object : TypeToken<List<ImageData>>() {}.type)
+            }
+
+
+        `when`(api.findImages(ArgumentMatchers.anyString())).thenAnswer {
+            val requested = it.getArgument<String>(0).toInt()
             Single.just(
-                listOf(
-                    ImageData(
-                        "1",
-                        "Shuri",
-                        "https://image.ibb.co/hFrbCp/shuri.jpg"
-                    ),
-                    ImageData(
-                        "2",
-                        "A-Bomb",
-                        "https://www.superherodb.com/pictures2/portraits/10/100/10060.jpg"
-                    )
-                )
+                data.filter { it.id.toInt() >= requested && it.id.toInt() < requested + REPOSITORY_PREFETCH_DISTANCE }
             )
-        )
+        }
         return api
     }
 }
+
+fun AssetManager.readAssetsFile(fileName: String): String = open(fileName).bufferedReader().use { it.readText() }
