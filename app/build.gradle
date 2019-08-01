@@ -14,7 +14,7 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.aniketkadam.tryoutstuff.MockTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -108,7 +108,6 @@ dependencies {
     testImplementation paging.testing
 
     testImplementation mockito.lib
-    androidTestImplementation mockito.lib
     testImplementation mockito.android
     androidTestImplementation mockito.android
 
@@ -126,5 +125,7 @@ dependencies {
 
     implementation multidex.lib
 
+    androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock:0.8.5'
 
+    androidTestImplementation "com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.5"
 }

@@ -15,6 +15,10 @@ interface AppComponent : AndroidInjector<TryOutStuffApplication> {
 
     @Component.Builder
     interface Builder {
+
+        fun databaseModule(databaseModule: DatabaseModule) : Builder
+        fun networkingModule(networkingModule: NetworkingModule) : Builder
+
         @BindsInstance
         fun application(application: Application): Builder
 
