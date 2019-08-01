@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import io.appflate.restmock.android.RESTMockTestRunner
 
-class MockTestRunner : RESTMockTestRunner() {
+class DaggerStubTestRunner : RESTMockTestRunner() {
     override fun newApplication(cl: ClassLoader?, className: String?, context: Context?): Application {
-        return super.newApplication(cl, MockApplication::class.java.name, context)
+        return super.newApplication(cl, DaggerStubTestApplication::class.java.name, context)
     }
 }

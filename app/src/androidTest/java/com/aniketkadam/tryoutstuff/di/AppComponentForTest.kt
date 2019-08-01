@@ -1,7 +1,7 @@
 package com.aniketkadam.tryoutstuff.di
 
 import android.app.Application
-import com.aniketkadam.tryoutstuff.MockApplication
+import com.aniketkadam.tryoutstuff.DaggerStubTestApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,11 +17,11 @@ import javax.inject.Singleton
         AppModule::class
     ]
 )
-interface AppComponentForTest : AndroidInjector<MockApplication> {
+interface AppComponentForTest : AndroidInjector<DaggerStubTestApplication> {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(application: Application): AppComponentForTest.Builder
+        fun application(application: Application): Builder
 
         fun build(): AppComponentForTest
     }
