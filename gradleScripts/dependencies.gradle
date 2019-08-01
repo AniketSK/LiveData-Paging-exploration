@@ -43,6 +43,7 @@ ext {
             multidex         : "2.0.1",
             robolectric      : "4.0.2",
             restMockServer   : "0.4.0",
+            dexOpener        : "2.0.2",
             daggerMock       : "0.8.5",
     ]
 
@@ -50,6 +51,8 @@ ext {
             lib:"com.github.fabioCollini.daggermock:daggermock:${versions.daggerMock}",
             kotlin: "com.github.fabioCollini.daggermock:daggermock-kotlin:${versions.daggerMock}"
     ]
+    dexOpener = [
+            lib: "com.github.tmurakami:dexopener:${versions.dexOpener}"
     ]
 
     kotlinAllOpen = [
