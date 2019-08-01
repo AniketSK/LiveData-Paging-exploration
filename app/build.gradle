@@ -131,4 +131,6 @@ dependencies {
     androidTestImplementation daggerMock.lib
     androidTestImplementation daggerMock.kotlin
     androidTestImplementation dexOpener.lib
+
+    implementation glide.lib
 }

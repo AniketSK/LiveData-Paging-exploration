@@ -45,10 +45,16 @@ ext {
             restMockServer   : "0.4.0",
             dexOpener        : "2.0.2",
             daggerMock       : "0.8.5",
+            glide            : "4.9.0",
+    ]
+
+    glide = [
+            lib: "com.github.bumptech.glide:glide:${versions.glide}"
+
     ]
 
     daggerMock = [
-            lib:"com.github.fabioCollini.daggermock:daggermock:${versions.daggerMock}",
+            lib   : "com.github.fabioCollini.daggermock:daggermock:${versions.daggerMock}",
             kotlin: "com.github.fabioCollini.daggermock:daggermock-kotlin:${versions.daggerMock}"
     ]
     dexOpener = [
