@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TryOutStuff</string>
+    <string name="content_description_profile_image">Profile image</string>
+    <string name="content_description_hero_name">Hero Name</string>
 </resources>
