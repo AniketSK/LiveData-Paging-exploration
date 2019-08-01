@@ -1,6 +1,6 @@
 package com.aniketkadam.tryoutstuff.di
 
-import android.content.res.AssetManager
+import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import com.aniketkadam.tryoutstuff.data.*
 import com.aniketkadam.tryoutstuff.network.ImageApi
@@ -31,9 +31,7 @@ class MainActivityModuleForTest {
         val api = mock(ImageApi::class.java)
 
         val data: List<ImageData> =
-            InstrumentationRegistry.getInstrumentation().context.assets.readAssetsFile("mocks/imagedata.json").let {
-                Gson().fromJson(it, object : TypeToken<List<ImageData>>() {}.type)
-            }
+            InstrumentationRegistry.getInstrumentation().context.readAssetsFile<List<ImageData>>("mocks/imagedata.json")
 
 
         `when`(api.findImages(ArgumentMatchers.anyString())).thenAnswer {
@@ -46,4 +44,7 @@ class MainActivityModuleForTest {
     }
 }
 
-fun AssetManager.readAssetsFile(fileName: String): String = open(fileName).bufferedReader().use { it.readText() }
+private inline fun <reified T : Any> Context.readAssetsFile(fileName: String): List<ImageData> =
+    assets.open(fileName).bufferedReader().use { it.readText() }.let {
+        Gson().fromJson(it, object : TypeToken<T>() {}.type)
+    }
