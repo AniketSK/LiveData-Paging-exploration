@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 28
@@ -135,4 +135,9 @@ dependencies {
     implementation glide.lib
 
     testImplementation mockito.inline
+
+    // Kotlin
+    implementation navigation.fragment
+    implementation navigation.ui
+
 }
