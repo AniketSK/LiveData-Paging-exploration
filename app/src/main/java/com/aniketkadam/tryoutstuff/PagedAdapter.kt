@@ -7,9 +7,9 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.databinding.DataItemBinding
-import javax.inject.Inject
 
-class PagedAdapter @Inject constructor() : PagedListAdapter<ImageData, ImageDataViewHolder>(REPO_COMPARATOR) {
+class PagedAdapter(private val onItemClickHandler: (ImageData?) -> Unit) :
+    PagedListAdapter<ImageData, ImageDataViewHolder>(REPO_COMPARATOR) {
 
     private var layoutInflater: LayoutInflater? = null
 
@@ -19,7 +19,7 @@ class PagedAdapter @Inject constructor() : PagedListAdapter<ImageData, ImageData
         }
         // No way this layoutInflater can be null, also better crash early if it somehow is
         DataBindingUtil.inflate<DataItemBinding>(layoutInflater!!, R.layout.data_item, parent, false).let {
-            return ImageDataViewHolder(it)
+            return ImageDataViewHolder(it, onItemClickHandler)
         }
     }
 
@@ -38,4 +38,5 @@ class PagedAdapter @Inject constructor() : PagedListAdapter<ImageData, ImageData
 
         }
     }
+
 }
