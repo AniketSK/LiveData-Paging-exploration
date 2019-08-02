@@ -133,4 +133,6 @@ dependencies {
     androidTestImplementation dexOpener.lib
 
     implementation glide.lib
+
+    testImplementation mockito.inline
 }

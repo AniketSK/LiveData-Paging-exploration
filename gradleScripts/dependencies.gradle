@@ -159,7 +159,8 @@ ext {
 
     mockito = [
             lib    : "org.mockito:mockito-core:${versions.mockito}",
-            android: "org.mockito:mockito-android:${versions.mockito}"
+            android: "org.mockito:mockito-android:${versions.mockito}",
+            inline : "org.mockito:mockito-inline:${versions.mockito}",
     ]
 
     hamcrest = [
