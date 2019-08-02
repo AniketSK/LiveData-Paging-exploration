@@ -4,8 +4,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
-class ImageBindingAdapter {
+object ImageBindingAdapter {
 
+    @JvmStatic
     @BindingAdapter("profileImage")
     fun loadImage(view: ImageView, imageUrl: String) {
         Glide.with(view.context)
