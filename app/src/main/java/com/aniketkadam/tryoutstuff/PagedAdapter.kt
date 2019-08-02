@@ -7,8 +7,9 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.databinding.DataItemBinding
+import javax.inject.Inject
 
-class PagedAdapter : PagedListAdapter<ImageData, ImageDataViewHolder>(REPO_COMPARATOR) {
+class PagedAdapter @Inject constructor() : PagedListAdapter<ImageData, ImageDataViewHolder>(REPO_COMPARATOR) {
 
     private var layoutInflater: LayoutInflater? = null
 
