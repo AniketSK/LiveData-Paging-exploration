@@ -30,7 +30,7 @@ ext {
             adxEspresso      : "3.2.0",
             adxTestExt       : "1.0.0",
             lifecycle        : "2.0.0",
-            navigation       : "1.0.0-alpha08",
+            navigation       : "2.1.0-beta02",
             jodatime         : "2.10.1",
             jetifier         : "1.0.0-beta05",
             room             : "2.1.0",
@@ -210,10 +210,9 @@ ext {
     ]
 
     navigation = [
-            fragment         : "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}",
-            ui               : "android.arch.navigation:navigation-ui-ktx:${versions.navigation}",
-            testhelper       : "android.arch.navigation:navigation-testing:${versions.navigation}",
-            classPathSafeArgs: "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
+            fragment         : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+            ui               : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+            classPathSafeArgs: "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
     ]
 
     room = [
