@@ -6,13 +6,13 @@ import com.aniketkadam.tryoutstuff.databinding.DataItemBinding
 
 class ImageDataViewHolder(
     private val itemBinding: DataItemBinding,
-    private val onItemClickHandler: (ImageData?) -> Unit
+    private val onItemClickHandler: (Int) -> Unit
 ) : RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(imageData: ImageData) {
         itemBinding.apply {
             data = imageData
-            root.setOnClickListener { onItemClickHandler(data) }
+            root.setOnClickListener { onItemClickHandler(adapterPosition) }
             executePendingBindings()
         }
     }
