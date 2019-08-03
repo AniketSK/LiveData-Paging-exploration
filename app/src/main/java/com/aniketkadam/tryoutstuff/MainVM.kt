@@ -15,7 +15,8 @@ class MainVM @Inject constructor(private val repository: Repository) : ViewModel
     }
 
     val imageList = _imageListResult.imageData
-    val networkState = _imageListResult.networkState
+    val networkState = _imageListResult.networkState // This should only be shown as the last item in the recyclerview. So it's only visible when scrolled to bottom.
+                                                                            // needs a different way to show loading when the expanded view is open though.
 
     val selectedItem = MutableLiveData<ImageData?>().apply { value = null }
 
