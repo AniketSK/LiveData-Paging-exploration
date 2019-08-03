@@ -18,11 +18,18 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        mainVM.navigate.observe(this, Observer {
-            // Start the fragment
-        })
-
+        mainVM.navigate.observe(this, Observer { navigate(it) })
     }
 
+    private fun navigate(it: ActiveFragment?) {
+        when (it) {
+            is ActiveFragment.Selection -> {
+                navTo(ListFragmentDirections.actionListFragmentToDetailViewFragment())
+            }
+        }
+    }
+
+    fun navTo(d: NavDirections) {
+        findNavController(R.id.nav_host_fragment).navigate(d)
+    }
 }
