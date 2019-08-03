@@ -16,6 +16,6 @@ class DetailViewFragment : DaggerFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         DataBindingUtil.inflate<DetailFragmentBinding>(inflater, R.layout.detail_fragment, container, false)
             .apply {
-                setVariable(BR.imageData, mainVM.selectedItem)
+                setVariable(BR.imageData, mainVM.selectedItem.value)
             }.root
 }
