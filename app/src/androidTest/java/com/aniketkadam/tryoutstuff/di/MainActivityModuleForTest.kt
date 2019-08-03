@@ -1,8 +1,12 @@
 package com.aniketkadam.tryoutstuff.di
 
 import android.content.Context
+import androidx.lifecycle.ViewModelProviders
 import androidx.test.platform.app.InstrumentationRegistry
+import com.aniketkadam.tryoutstuff.MainActivity
+import com.aniketkadam.tryoutstuff.MainVM
 import com.aniketkadam.tryoutstuff.data.*
+import com.aniketkadam.tryoutstuff.di.vm.ViewModelFactory
 import com.aniketkadam.tryoutstuff.network.ImageApi
 import com.aniketkadam.tryoutstuff.network.NetworkBoundaryCallback
 import com.google.gson.Gson
@@ -13,6 +17,7 @@ import io.reactivex.Single
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import javax.inject.Named
 
 @Module
 class MainActivityModuleForTest {
@@ -42,6 +47,19 @@ class MainActivityModuleForTest {
         }
         return api
     }
+
+    @Provides
+    @Named(ACTIVITY_VM)
+    fun getMainVm(
+        mainActivity: MainActivity,
+        factory: ViewModelFactory
+    ): MainVM =
+        ViewModelProviders.of(mainActivity, factory).get(MainVM::class.java)
+
+    @Provides
+    @Named(FRAGMENT_VM)
+    fun provideMainVmForFragments(mainActivity: MainActivity): MainVM =
+        ViewModelProviders.of(mainActivity).get(MainVM::class.java)
 }
 
 private inline fun <reified T : Any> Context.readAssetsFile(fileName: String): T =
