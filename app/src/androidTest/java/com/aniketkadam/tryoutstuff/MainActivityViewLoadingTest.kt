@@ -9,6 +9,8 @@ import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.lang.Thread.sleep
+import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityViewLoadingTest {
@@ -20,5 +22,7 @@ class MainActivityViewLoadingTest {
     fun checkIfLaunches() {
         activityTestRule.launchActivity(null)
         onView(withText("Shuri")).check(matches(isDisplayed()))
+        sleep(TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS))
     }
+
 }
