@@ -46,6 +46,7 @@ ext {
             dexOpener        : "2.0.2",
             daggerMock       : "0.8.5",
             glide            : "4.9.0",
+            rxrelay          : "2.1.0",
     ]
 
     glide = [
@@ -133,6 +134,7 @@ ext {
             bindingRecyclerview: "com.jakewharton.rxbinding3:rxbinding-recyclerview:${versions.rxbindings}",
             bindingCore        : "com.jakewharton.rxbinding3:rxbinding-core:${versions.rxbindings}",
             appCompat          : "com.jakewharton.rxbinding3:rxbinding-appcompat:${versions.rxbindings}",
+            relay              : "com.jakewharton.rxrelay2:rxrelay:${versions.rxrelay}"
     ]
 
     dagger = [
