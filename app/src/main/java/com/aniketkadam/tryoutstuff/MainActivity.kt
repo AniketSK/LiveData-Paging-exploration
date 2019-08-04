@@ -29,7 +29,9 @@ class MainActivity : DaggerAppCompatActivity() {
         }
     }
 
-    fun navTo(d: NavDirections) {
-        findNavController(R.id.nav_host_fragment).navigate(d)
+    // Only navigate to a given destination if it exists. This avoids the really standard case of navigating to the same location, resulting in
+    // navigation destination is unknown to the nav controller.
+    fun navTo(d: NavDirections) = with(findNavController(R.id.nav_host_fragment)){
+        currentDestination?.getAction(d.actionId)?.let { navigate(d) } ?: Timber.e("Invalid route for direction ${d} with id ${d.actionId}")
     }
 }
