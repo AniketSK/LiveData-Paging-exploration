@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,5 +39,16 @@ class DetailViewFragment : DaggerFragment() {
 
         mainVM.imageList.observe(this, Observer { adapter.submitList(it) })
 
+        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                mainVM.setItemToNavigate(
+                    PositionOnFragment(
+                        ActiveFragment.List,
+                        (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                    )
+                )
+            }
+        })
     }
+
 }
