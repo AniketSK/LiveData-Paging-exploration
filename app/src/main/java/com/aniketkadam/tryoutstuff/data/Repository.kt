@@ -18,6 +18,7 @@ class Repository @Inject constructor(
         val config = PagedList.Config.Builder().setPageSize(20)
             .setPrefetchDistance(REPOSITORY_PREFETCH_DISTANCE)
             .setInitialLoadSizeHint(30)
+            .setEnablePlaceholders(true)
             .setMaxSize(100)
             .build()
 

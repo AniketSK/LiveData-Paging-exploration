@@ -9,7 +9,8 @@ object ImageBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("profileImage")
-    fun loadImage(view: ImageView, imageUrl: String) {
+    fun loadImage(view: ImageView, imageUrl: String?) {
+        if (imageUrl == null) return
         Glide.with(view.context)
             .load(imageUrl).fitCenter()
             .error(android.R.drawable.ic_menu_upload_you_tube)

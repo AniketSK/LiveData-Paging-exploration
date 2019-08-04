@@ -24,7 +24,9 @@ class PagedAdapter(private val onItemClickHandler: (Int) -> Unit) :
     }
 
     // Crash it early if the item is somehow null
-    override fun onBindViewHolder(holder: ImageDataViewHolder, position: Int) = holder.bind(getItem(position)!!)
+    override fun onBindViewHolder(holder: ImageDataViewHolder, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
+    }
 
     companion object {
         private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<ImageData>() {
