@@ -19,7 +19,7 @@ class PagedAdapter(private val onItemClickHandler: (Int) -> Unit) :
         }
         // No way this layoutInflater can be null, also better crash early if it somehow is
         DataBindingUtil.inflate<DataItemBinding>(layoutInflater!!, R.layout.data_item, parent, false).let {
-            return ImageDataViewHolder(it) { onItemClickHandler }
+            return ImageDataViewHolder(it, onItemClickHandler)
         }
     }
 
