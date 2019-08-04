@@ -6,9 +6,11 @@
     <fragment android:id="@+id/listFragment" android:name="com.aniketkadam.tryoutstuff.ListFragment"
               android:label="ListFragment">
         <action android:id="@+id/action_listFragment_to_detailViewFragment" app:destination="@id/detailViewFragment"/>
+        <argument android:name="resumeItemPosition" app:argType="integer" android:defaultValue="0"/>
     </fragment>
     <fragment android:id="@+id/detailViewFragment" android:name="com.aniketkadam.tryoutstuff.DetailViewFragment"
               android:label="DetailViewFragment">
         <action android:id="@+id/action_detailViewFragment_to_listFragment" app:destination="@id/listFragment"/>
+        <argument android:name="resumeItemPosition" app:argType="integer" android:defaultValue="0"/>
     </fragment>
 </navigation>
