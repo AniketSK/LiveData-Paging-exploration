@@ -2,7 +2,6 @@ package com.aniketkadam.tryoutstuff
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.data.ImageListResult
 import com.aniketkadam.tryoutstuff.data.LiveDataTestUtil
 import com.aniketkadam.tryoutstuff.data.Repository
@@ -37,8 +36,14 @@ class MainVMTest {
 
     @Test
     fun `when an item is selected, the selected item fragment is launched`() {
-        assertThat(LiveDataTestUtil.getValue(mainVM.navigate), equalTo<ActiveFragment>(ActiveFragment.List))
-        mainVM.selectedItem.value = ImageData("a", "B", "C")
-        assertThat(LiveDataTestUtil.getValue(mainVM.navigate), equalTo<ActiveFragment>(ActiveFragment.Selection))
+        assertThat(
+            LiveDataTestUtil.getValue(mainVM.itemToNavigate),
+            equalTo<PositionOnFragment?>(null) // We must return null to avoid trying to reset the values.
+        )
+        mainVM.setItemToNavigate(PositionOnFragment(ActiveFragment.Selection, 2))
+        assertThat(
+            LiveDataTestUtil.getValue(mainVM.itemToNavigate),
+            equalTo<PositionOnFragment?>(PositionOnFragment(ActiveFragment.Selection, 2))
+        )
     }
 }
