@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.aniketkadam.tryoutstuff.data.ImageData
 import com.aniketkadam.tryoutstuff.databinding.DataItemBinding
 
-class PagedAdapter(private val onItemClickHandler: (ImageData?) -> Unit) :
+class PagedAdapter(private val onItemClickHandler: (Int) -> Unit) :
     PagedListAdapter<ImageData, ImageDataViewHolder>(REPO_COMPARATOR) {
 
     private var layoutInflater: LayoutInflater? = null
@@ -19,7 +19,7 @@ class PagedAdapter(private val onItemClickHandler: (ImageData?) -> Unit) :
         }
         // No way this layoutInflater can be null, also better crash early if it somehow is
         DataBindingUtil.inflate<DataItemBinding>(layoutInflater!!, R.layout.data_item, parent, false).let {
-            return ImageDataViewHolder(it) { itemAdapterposition: Int -> onItemClickHandler(getItem(itemAdapterposition)) }
+            return ImageDataViewHolder(it) { onItemClickHandler }
         }
     }
 
@@ -38,5 +38,6 @@ class PagedAdapter(private val onItemClickHandler: (ImageData?) -> Unit) :
 
         }
     }
+
 
 }

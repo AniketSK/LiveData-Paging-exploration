@@ -22,6 +22,7 @@ class Repository @Inject constructor(
             .build()
 
         val data = LivePagedListBuilder(source, config)
+
             .setBoundaryCallback(boundaryCallback)
             .build()
 
