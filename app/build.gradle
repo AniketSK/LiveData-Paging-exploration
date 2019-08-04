@@ -60,6 +60,8 @@ dependencies {
     androidTestImplementation adxTestLib.rules
     androidTestImplementation adxTestLib.testext
     androidTestImplementation adxTestLib.espresso
+    androidTestImplementation adxTestLib.espressoContrib
+    androidTestImplementation adxTestLib.uiautomator
     androidTestImplementation lifecycle.testhelper
     androidTestImplementation room.test
     androidTestImplementation restMockServer.lib

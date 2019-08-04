@@ -47,6 +47,7 @@ ext {
             daggerMock       : "0.8.5",
             glide            : "4.9.0",
             rxrelay          : "2.1.0",
+            uiautomator      : "2.2.0",
     ]
 
     glide = [
@@ -193,11 +194,13 @@ ext {
     adxTestLib = [
             espresso             : "androidx.test.espresso:espresso-core:${versions.adxEspresso}",
             espressoIntents      : "androidx.test.espresso:espresso-intents:${versions.adxEspresso}",
+            espressoContrib      : "androidx.test.espresso:espresso-contrib:${versions.adxEspresso}",
             rules                : "androidx.test:rules:${versions.adxTestRunner}",
             runner               : "androidx.test:runner:${versions.adxTestRunner}",
             instrumentationRunner: "androidx.test.runner.AndroidJUnitRunner",
             testext              : "androidx.test.ext:junit:${versions.adxTestExt}",
-            core                 : "androidx.test:core:${versions.adxTestRunner}"
+            core                 : "androidx.test:core:${versions.adxTestRunner}",
+            uiautomator          : "androidx.test.uiautomator:uiautomator:${versions.uiautomator}"
     ]
 
     lifecycle = [
